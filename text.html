@@ -58,10 +58,14 @@
                         <span v-if="editId != item.id">{{item.platfrom}}</span>
                         <span v-else><input type="text" v-model="item.platfrom"/></span>
                     </td>
-                    <td>{{item.activityType}}</td>
-                    <td>{{item.rule}}</td>
-                    <td>{{item.status}}</td>
-                    <td>{{submissionTime}}</td>
+                    <td><span v-if="editId != item.id">{{item.activityType}}</span>
+                        <span v-else><input type="text" v-model="item.activityType"/></span></td>
+                    <td><span v-if="editId != item.id">{{item.rule}}</span>
+                        <span v-else><input type="text" v-model="item.rule"/></span></td>
+                    <td><span v-if="editId != item.id">{{item.status}}</span>
+                        <span v-else><input type="text" v-model="item.status"/></span></td>
+                    <td><span v-if="editId != item.id">{{item.submissionTime}}</span>
+                        <span v-else><input type="text" v-model="item.submissionTime"/></span></td>
                     <td><a class="table-a" @click="handleStatus(item)" href="javascript:;">禁用</a><span class="line-col">|</span>
                         <a class="table-a" v-show="editId==item.id" @click="fSave(item)" href="javascript:;">保存</a>
                         <a class="table-a" v-show="editId!=item.id" @click="fEdit(item)" href="javascript:;">编辑</a><span class="line-col" s>|</span>
