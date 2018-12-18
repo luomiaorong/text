@@ -22,7 +22,7 @@
             <div>
                 <label>所属平台：</label>
                 <input v-model="platfrom">
-                <button @click="handleClick">提交</button>
+                <button @click="fSubmit">提交</button>
             </div>
             <div>
                 <label>活动类型：</label>
@@ -55,8 +55,8 @@
             <tbody>
                 <tr v-for="(item,index) of list" 
                 :key="index"
-                >{{item.platfrom}}
-                    <td>钱包金融</td>
+                >
+                    <td>{{item.platfrom}}</td>
                     <td>大转盘</td>
                     <td>大转盘规则1</td>
                     <td>启用</td>
@@ -90,7 +90,7 @@
                 list: []
             },
             methods: {
-                handleClick: function() {
+                fSubmit: function() {
                     this.list.push({platfrom:platfrom})
                     this.platfrom = ""
                 }
