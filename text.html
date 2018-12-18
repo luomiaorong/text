@@ -54,14 +54,19 @@
             </thead>
             <tbody>
                 <tr v-for="(item,index) of list" :key="index">
-                    <td>{{item.platfrom}}</td>
-                    <td>大转盘</td>
-                    <td>大转盘规则1</td>
-                    <td>启用</td>
-                    <td>2018-02-23 12:09:04</td>
-                    <td><a class="table-a" href="javascript:;">禁用</a><span class="line-col">|</span>
-                        <a class="table-a" href="javascript:;">编辑</a><span class="line-col" s>|</span>
-                        <a class="table-a" href="javascript:;">删除</a>
+                    <td>
+                        <span v-if="editId != item.id">{{item.platfrom}}</span>
+                        <span v-else><input type="text" v-model="item.platfrom"/></span>
+                    </td>
+                    <td>{{item.activityType}}</td>
+                    <td>{{item.rule}}</td>
+                    <td>{{item.status}}</td>
+                    <td>{{submissionTime}}</td>
+                    <td><a class="table-a" @click="handleStatus(item)" href="javascript:;">禁用</a><span class="line-col">|</span>
+                        <a class="table-a" v-show="editId==item.id" @click="fSave(item)" href="javascript:;">保存</a>
+                        <a class="table-a" v-show="editId!=item.id" @click="fEdit(item)" href="javascript:;">编辑</a><span class="line-col" s>|</span>
+                        <a class="table-a" @click="handleDelete" href="javascript:;">删除</a>
+                        
                     </td>
                 </tr>
 
@@ -71,15 +76,17 @@
 
 
     <script>
+
         new Vue({
-            el: ".text",
+            el: ".demo",
             data: {
                 platfrom: "",
                 activityType: "",
                 submissionTime: "",
                 rule: "",
                 status: "",
-                list: []
+                list: [],
+                editId: ""
             },
             methods: {
                 fSubmit: function() {
@@ -90,9 +97,27 @@
                     var status = this.status;
                     var operate = this.operate;
                     this.list.push({
-                        platfrom: platfrom
+                        id: +new Date(),
+                         platfrom: platfrom,
+                        activityType:activityType,
+                        rule:rule,
+                        submissionTime:submissionTime,
+                        status:status,
+                        operate:operate
                     })
                   
+                },
+                handleDelete:function(index){
+                    this.list.splice(index,1);
+                },
+                handleStatus:function(item){
+                   item.status="禁用";
+                },
+                fEdit:function(item){
+                    this.editId = item.id;
+                },
+                fSave:function(item){
+                    this.editId = "";
                 }
 
             }
