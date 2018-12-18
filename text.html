@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/index.css">
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+
+    <div class="box">
+        <span class="line">|</span>
+        <span class="list">数据列表</span>
+        <input v-model="activerule" type="submit" class="rule" value="新增活动规则">
+    </div>
+    <div class="demo">
+        <div class="text">
+            <div>
+                <label>所属平台：</label>
+                <input v-model="platfrom">
+                <button @click="handleClick">提交</button>
+            </div>
+            <div>
+                <label>活动类型：</label>
+                <input v-model="activityType">
+            </div>
+            <div>
+                <label>活动规则名称：</label>
+                <input v-model="rule">
+            </div>
+            <div>
+                <label>状态：</label>
+                <input v-model="status">
+            </div>
+            <div>
+                <label>提交时间：</label>
+                <input v-model="submissionTime">
+            </div>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>所属平台</th>
+                    <th>活动类型</th>
+                    <th>活动规则名称</th>
+                    <th>状态</th>
+                    <th>提交时间</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(item,index) of list" 
+                :key="index"
+                >{{item.platfrom}}
+                    <td>钱包金融</td>
+                    <td>大转盘</td>
+                    <td>大转盘规则1</td>
+                    <td>启用</td>
+                    <td>2018-02-23 12:09:04</td>
+                    <td><a class="table-a" href="javascript:;">禁用</a><span class="line-col">|</span>
+                        <a class="table-a" href="javascript:;">编辑</a><span class="line-col" s>|</span>
+                        <a class="table-a" href="javascript:;">删除</a>
+                    </td>
+                </tr>
+              
+            </tbody>
+        </table>
+    </div>
+
+
+    <script>
+        var platfrom = this.platfrom;
+        var activityType = this.activityType;
+        var rule = this.rule;
+        var submissionTime = this.submissionTime;
+        var status = this.status;
+        var operate = this.operate;
+        new Vue({
+            el: ".text",
+            data: {
+                platfrom: "",
+                activityType: "",
+                submissionTime: "",
+                rule: "",
+                status: "",
+                list: []
+            },
+            methods: {
+                handleClick: function() {
+                    this.list.push({platfrom:platfrom})
+                    this.platfrom = ""
+                }
+
+            }
+        })
+    </script>
+</body>
+
+</html>
