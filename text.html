@@ -53,9 +53,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(item,index) of list" 
-                :key="index"
-                >
+                <tr v-for="(item,index) of list" :key="index">
                     <td>{{item.platfrom}}</td>
                     <td>大转盘</td>
                     <td>大转盘规则1</td>
@@ -66,19 +64,13 @@
                         <a class="table-a" href="javascript:;">删除</a>
                     </td>
                 </tr>
-              
+
             </tbody>
         </table>
     </div>
 
 
     <script>
-        var platfrom = this.platfrom;
-        var activityType = this.activityType;
-        var rule = this.rule;
-        var submissionTime = this.submissionTime;
-        var status = this.status;
-        var operate = this.operate;
         new Vue({
             el: ".text",
             data: {
@@ -91,8 +83,16 @@
             },
             methods: {
                 fSubmit: function() {
-                    this.list.push({platfrom:platfrom})
-                    this.platfrom = ""
+                    var platfrom = this.platfrom;
+                    var activityType = this.activityType;
+                    var rule = this.rule;
+                    var submissionTime = this.submissionTime;
+                    var status = this.status;
+                    var operate = this.operate;
+                    this.list.push({
+                        platfrom: platfrom
+                    })
+                  
                 }
 
             }
